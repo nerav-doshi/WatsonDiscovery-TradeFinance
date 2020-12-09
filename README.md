@@ -1,9 +1,15 @@
-# WatsonDiscovery-TradeFinance
-Watson Discovery is the AI search solution that you can ingest the data your experts and customers need in a variety of formats; train Discovery in a small amount of time with no need for technical expertise to understand the structure of your data; enrich Discovery with personalized NLP; and begin querying your data to find answers to your most complex business questions.  
+# AI in trade finance with Smart Document Understanding
 
-## What is SDU?
+High volume, repetitive process with rapid turnaround time required – added with small margin of acceptable error.The document screening process encompasses an impossibly diverse range of documents, with inconsistent formats, data structures and varying levels of scan quality. It requires complex document review and validation requirements.
 
-SDU trains Watson Discovery to extract custom fields in your documents. Customizing how your documents are indexed into Discovery will improve the answers returned from queries.
+Using the Watson Discovery, we will enhance the Discovery model so that queries will be better focused to only search the most relevant information.Traditional software solutions is unable to cope and solve this challenge with unstructured data. The AI solution brings a complete integrated processing pipeline – leveraging AI capabilities such as cognitive Optical Character Recognition and Natural Language Processing capabilities.
+
+IBM® Watson™ Discovery, an AI search technology that uses innovations in natural language processing, machine learning, and anomaly detection to enable you analyze documents and answers in less time with minimal effort
+
+
+## Watson Discovery
+
+Watson Discovery to extract custom fields in your documents. Customizing how your documents are indexed into Discovery will improve the answers returned from queries.
 
 With SDU, you annotate fields within your documents to train custom conversion models. As you annotate, Watson is learning and will start predicting annotations. SDU models can also be exported and used on other collections.
 
@@ -18,98 +24,118 @@ Here is a great video that provides an overview of the benefits of SDU, and a wa
 
 ## Flow
 
-![architecture](doc/source/images/architecture.png)
+![architecture](images/architecture.png)
 
-# Watch the Video
+# Features - Content Intelligence enrichments
 
-[![video](https://img.youtube.com/vi/-yniuX-Poyw/0.jpg)](https://youtu.be/-yniuX-Poyw)
+A Discovery for Content Intelligence project has the following default settings:
+
+Settings: Optical Character Reader Advanced on
+Enrichments applied: Entities, Parts of speech, Table Understanding, and Contracts
+Improvement tools enabled: Facets (by Category, Nature, Contract Term, Contract Payment Term, Contract Type, Contract Currency, Invoice Buyer, Invoice supplier, Invoice Currency, Purchase Order Buyer, Purchase Order Supplier, Purchase Order Payment Term) and Table Retrieval
+
+
+***IBM Cloud Pak for Data***
+The Discovery for Content Intelligence enrichments (Contracts, Invoices, and Purchase orders) are available only if you install Discovery for Content Intelligence.
+
+***IBM Cloud***
+On IBM Cloud Premium plans, the Discovery for Content Intelligence Contracts enrichment is available if you choose the Project type of Document retrieval, then select the Apply contracts enrichment checkbox.
 
 # Prerequisite
-Create your IBM Cloud account at: https://ibm.biz/BdqLCZ
+You will need IBM Cloud Pak for Data instance: https://ibm.biz/BdqLCZ
 # Steps:
 
 1. [Clone the repo](#1-clone-the-repo)
-1. [Create IBM Cloud services](#2-create-ibm-cloud-services)
-1. [Configure Watson Discovery](#3-configure-watson-discovery)
+1. [Log into IBM Cloud Pak for Data instance that has Watson Discovery](#2-log-into-ibm-cloud-pak-for-data-instance-that-has-watson-discovery)
+1. [Create a new project and import the documents](#3-create-a-new-project-and-import-the-documents)
+1. [Understanding Discovery for Content Intelligence enrichments](#4-understanding-discovery-for-content-intelligence-enrichments)
 
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/fawazsiddiqi/WDiscoverySDU
+git clone https://github.com/nerav-doshi/WatsonDiscovery-TradeFinance
 ```
 
-### 2. Create IBM Cloud services
+### 2. Log into IBM Cloud Pak for Data instance that has Watson Discovery
 
-Create the following services:
+Open the Projects Interface
 
-* [**Watson Discovery**](https://cloud.ibm.com/catalog/services/discovery)
+The url for the Projects interface is: https://10.1.1.1:32112/discovery/core/projects/
 
-### 3. Configure Watson Discovery
+- Open a browser and enter the url for the Projects Interface.
 
-#### Import the document
+You may be challenged with a security warning about an unsafe connection.  Do not be concerned about this.    Depending on your browser – follow the steps to proceed e.g.  Firefox: accept the risk and continue, Chrome: (see below) Click on Advanced then click on Proceed to <server> (unsafe)
 
-As shown below, launch the `Watson Discovery` tool and create a new data collection by selecting the `Upload your own data` option. Give the data collection a unique name. When prompted, select and upload the `ecobee3_UserGuide.pdf` file located in the `data` directory of your local repo.
+![unsafe](images/unsafe.png)
 
-![upload_data_into_collection](doc/source/images/upload-disco-file-for-sdu.gif)
+- Because you are not yet logged in – you will be required to authenticate.Enter the login credentials.  In this Lab you are an administrator.  The Username is admin and the Password is password.
 
-The `Ecobee` is a popular residential thermostat that has a wifi interface and multiple configuration options.
+![login](images/login.png)
 
-Before applying SDU to our document, lets do some simple queries on the data so that we can compare it to results found after applying SDU.
+### 3. Create a new project and import the documents
 
-![disco-collection-panel-pre](doc/source/images/disco-collection-panel-pre.png)
+A project is a convenient way to build and manage your IBM Watson™ Discovery application. The Watson Discovery Projects screen shows all projects that have been created.  A project comprises one or more collections and facilitates federated actions such as searching across multiple collections (by referring only to the project).   Watson Discovery comes with a default Sample Project.
 
-Click the `Build your own query` [1] button.
+You can assign a Project type (Document Retrieval, Conversational Search, Content Mining, or  Custom) and add data quickly by creating a collection, or reusing an existing one. After you have configured your project with enrichments and other improvement tools, you can choose which components you'd like to deploy.
 
-![disco-build-query](doc/source/images/disco-build-query.png)
+- Open the Projects page by selecting the My Projects.
+- Select New project. Name your project and choose a Project type: Document Retrieval, Conversational Search, Content Mining, or Custom.
+- Click Next.
+- Choose and configure a data source (see Creating and managing collections), or you can reuse an existing collection by selecting Reuse data from an existing collection.In our case we create a new collection called invoices and contracts
+- As shown below, launch the `Watson Discovery` tool and create a new data collection by selecting the `Upload your own data` option. Give the data collection a unique name ***example: Contracts***. When prompted, select and upload the `AirwayBill.pdf`,`BillofLading.pdf`,`CertificateInsurance.pdf`,`CertificateOrigin.pdf` files located in the `data` directory of your local repo. HYou have several options to
 
-Enter queries related to the operation of the thermostat and view the results. As you will see, the results are not very useful, and in some cases, not even related to the question.
+![upload_data_into_collection](images/createproject.gif)
 
-#### Annotate with SDU
+#### Create a new collection
+On this screen you name the collection ***example: Invoices***, the language, crawl schedule, file path location(s) and other general attributed.
 
-Now let's apply SDU to our document to see if we can generate some better query responses.
+![upload_data_into_collection](images/invoicecollection.gif)
 
-From the Discovery collection panel, click the `Configure data` button (located in the top right corner) to start the SDU process.
+### 3. Understanding Discovery for Content Intelligence enrichments
+Discovery has a powerful analytics engine that provides cognitive enrichments and insights into your data. With built-in natural language processing (NLP) capabilities, it can extract enrichments from a wide range of document types, such as JSON, HTML, PDF, and Microsoft™ Word. There are several enrichments such as entity, sentiment, concept, classification, emotion and relationship that are available.
 
-Here is the layout of the `Identify fields` tab of the SDU annotation panel:
+Discovery for Content Intelligence provides a set of analysis models that are pre-trained for use with the following business documents:
+Contracts enrichment - After a document is processed by the Contracts enrichments, the service provides JSON output. For more information click [link](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-contracts-schema)
+Cloud Pak for Data only Invoices For more information, see [Understanding the Invoices enrichment](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-invoices)
+Cloud Pak for Data only Purchase orders For more imformation, see [Understanding the Purchase orders enrichment](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-purchase_orders)
 
-![disco-sdu-panel](doc/source/images/disco-sdu-panel.png)
+- Click the `Contracts` collection
+- Go to **Manage collections** folder icon on the left
+- Click the **Enrichments** tab and make sure Contracts enrichment is enabled
 
-The goal is to annotate all of the pages in the document so Discovery can learn what text is important, and what text can be ignored.
+![content_intelligence_enrichments](images/ContractsEnrichments.png)
 
-* [1] is the list of pages in the manual. As each is processed, a green check mark will appear on the page.
-* [2] is the current page being annotated.
-* [3] is where you select text and assign it a label.
-* [4] is the list of labels you can assign to the page text.
-* Click [5] to submit the page to Discovery.
-* Click [6] when you have completed the annotation process.
+- Unless you specify the Invoices or Purchase orders enrichment, Discovery for Content Intelligence processes all collections with the Contracts enrichment. The Invoices and Purchase Orders enrichments enable automation of complex business processes, such as invoice reconciliation, software entitlement verification, and more. To specify the Invoices or Purchase orders enrichment, complete the following steps:
+    - On the **Improve and customize** page, select I want to... => Extract meaning.
+    - Select **Invoices** collection.
+    - On the **Available enrichments** page, unselect Contracts, and select either Invoices or Purchase Orders. Only one of Contracts, Invoices, and Purchase Orders can be applied to a given collection.
+    - Click Apply changes and reprocess.
 
-As you go though the annotations one page at a time, Discovery is learning and should start automatically updating the upcoming pages. Once you get to a page that is already correctly annotated, you can stop, or simply click `Submit` [5] to acknowledge it is correct. The more pages you annotate, the better the model will be trained.
+![content_intelligence_enrichments](images/InvoiceEnrichments.png)
 
-For this specific owner's manual, at a minimum, it is suggested to mark the following:
+### 4. Identify and query documents
+Content Intelligence displays the original documents in a browser, regardless of the source format. In addition, it recognizes key elements of the documents and gives you the ability to navigate to them quickly. For example, if you are searching for the payment terms clauses in a contract.Document preview with Content Intelligence detects those clauses and highlights the passagesk
 
-* The main title page as `title`
-* The table of contents (shown in the first few pages) as `table_of_contents`
-* All headers and sub-headers (typed in light green text) as a `subtitle`
-* All page numbers as `footers`
-* All warranty and licensing infomation (located in the last few pages) as a `footer`
-* All other text should be marked as `text`.
+- The Integrate and deploy page in the IBM Watson™ Discovery can be used to share and deploy your projects.
+    - Click the **Integrate and deploy**.
+    - Click copy link and paste it on to the browser.
 
-Once you click the `Apply changes to collection` button [6], you will be asked to reload the document. Choose the same owner's manual `.pdf` document as before.
+![identify_and_query_documents](images/integrateanddeploys.png)
 
-Next, click on the `Manage fields` [1] tab.
+- Search for term `port of discharge pudong` in application search bar.
+![identify_and_query_documents](images/pudong.gif)
 
-![disco-manage-fields](doc/source/images/disco-manage-fields.png)
+- Click **Obligation** on the left side and it highlights information about contracts. Click on Contracts tab and additional details of shipment can be found.Click on other attributes to sucj as Location,Organization, Date and Time. Click **<-- TM000006** on the top-left to go back to search results page.
+![identify_and_query_documents](images/obligation.png)
 
-* [2] Here is where you tell Discovery which fields to ignore. Using the `on/off` buttons, turn off all labels except `subtitles` and `text`.
-* [3] is telling Discovery to split the document apart, based on `subtitle`.
-* Click [4] to submit your changes.
+- Review additional results from other documents
+![identify_and_query_documents](images/searchresults.png)
 
-Once again, you will be asked to reload the document.
+- To filter for tables, Search for `natural rubber` in the search bar and the click **Rubber Fashion Company** under Invoice Supplier and click toggle bar to **show Table results only**. You can see the invoice document that contains goods description for natural rubber.
 
-Now, as a result of splitting the document apart, your collection will look very different:
+![identify_and_query_documents](images/naturalrubber.png)
 
-![disco-collection-panel](doc/source/images/disco-collection-panel.png)
+#### Summary
+Discovery for Content Intelligence enables understanding of governing business documents with pre-trained models so enterprises can start analyzing complex documents in minutes. The enrichments enable automation of complex business processes, such as contract review and negotiation, and more. Such automation of processes result in increased productivity, minimization of costs, and reduced exposure.
 
-Return to the query panel (click `Build your own query`) and see how much better the results are.
-
-![disco-build-query-2](doc/source/images/disco-build-query-2.png)
+Discovery for Content Intelligence includes pre-trained models that identify lists, sections, tables, headers, footers, and other structures in your documents. These models cannot be modified, so you cannot annotate fields with Smart Document Understanding to train custom conversion models when using Discovery for Content Intelligence. The Table understanding enrichment is automatically applied. To learn more about [Watson Discovery](https://www.ibm.com/cloud/watson-discovery)and [additional tutorials](https://www.ibm.com/demos/collection/Watson-Discovery/?lc=en)
