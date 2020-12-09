@@ -1,0 +1,2 @@
+# WatsonDiscovery-TradeFinance
+Watson Discovery is the AI search solution that you can ingest the data your experts and customers need in a variety of formats; train Discovery in a small amount of time with no need for technical expertise to understand the structure of your data; enrich Discovery with personalized NLP; and begin querying your data to find answers to your most complex business questions.  
