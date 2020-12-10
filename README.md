@@ -113,7 +113,7 @@ Cloud Pak for Data only Purchase orders For more imformation, see [Understanding
     - On the **Available enrichments** page, unselect Contracts, and select either Invoices or Purchase Orders. Only one of Contracts, Invoices, and Purchase Orders can be applied to a given collection.
     - Click Apply changes and reprocess.
 
-![content_intelligence_enrichments](images/InvoiceEnrichments.png)
+![content_intelligence_enrichments](images/InvoiceEnrichments.gif)
 
 ### 4. Identify and query documents
 Content Intelligence displays the original documents in a browser, regardless of the source format. In addition, it recognizes key elements of the documents and gives you the ability to navigate to them quickly. For example, if you are searching for the payment terms clauses in a contract.Document preview with Content Intelligence detects those clauses and highlights the passagesk
