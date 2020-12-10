@@ -42,7 +42,7 @@ The Discovery for Content Intelligence enrichments (Contracts, Invoices, and Pur
 On IBM Cloud Premium plans, the Discovery for Content Intelligence Contracts enrichment is available if you choose the Project type of Document retrieval, then select the Apply contracts enrichment checkbox.
 
 # Prerequisite
-You will need IBM Cloud Pak for Data instance: https://ibm.biz/BdqLCZ
+You will need IBM Cloud Pak for Data instance
 # Steps:
 
 1. [Clone the repo](#1-clone-the-repo)
@@ -84,7 +84,7 @@ You can assign a Project type (Document Retrieval, Conversational Search, Conten
 - Choose and configure a data source (see Creating and managing collections), or you can reuse an existing collection by selecting Reuse data from an existing collection.In our case we create a new collection called invoices and contracts
 - As shown below, launch the `Watson Discovery` tool and create a new data collection by selecting the `Upload your own data` option. Give the data collection a unique name ***example: Contracts***. When prompted, select and upload the `AirwayBill.pdf`,`BillofLading.pdf`,`CertificateInsurance.pdf`,`CertificateOrigin.pdf` files located in the `data` directory of your local repo. HYou have several options to
 
-![upload_data_into_collection](images/createproject.gif)
+![upload_data_into_collection](images/Createproject.gif)
 
 #### Create a new collection
 On this screen you name the collection ***example: Invoices***, the language, crawl schedule, file path location(s) and other general attributed.
@@ -96,7 +96,9 @@ Discovery has a powerful analytics engine that provides cognitive enrichments an
 
 Discovery for Content Intelligence provides a set of analysis models that are pre-trained for use with the following business documents:
 Contracts enrichment - After a document is processed by the Contracts enrichments, the service provides JSON output. For more information click [link](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-contracts-schema)
+
 Cloud Pak for Data only Invoices For more information, see [Understanding the Invoices enrichment](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-invoices)
+
 Cloud Pak for Data only Purchase orders For more imformation, see [Understanding the Purchase orders enrichment](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-purchase_orders)
 
 - Click the `Contracts` collection
@@ -120,7 +122,7 @@ Content Intelligence displays the original documents in a browser, regardless of
     - Click the **Integrate and deploy**.
     - Click copy link and paste it on to the browser.
 
-![identify_and_query_documents](images/integrateanddeploys.png)
+![identify_and_query_documents](images/integrateanddeploy.png)
 
 - Search for term `port of discharge pudong` in application search bar.
 ![identify_and_query_documents](images/pudong.gif)
