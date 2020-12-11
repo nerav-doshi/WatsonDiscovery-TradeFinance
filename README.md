@@ -48,6 +48,7 @@ You will need IBM Cloud Pak for Data instance
 1. [Log into IBM Cloud Pak for Data instance that has Watson Discovery](#2-log-into-ibm-cloud-pak-for-data-instance-that-has-watson-discovery)
 1. [Create a new project and import the documents](#3-create-a-new-project-and-import-the-documents)
 1. [Understanding Discovery for Content Intelligence enrichments](#4-understanding-discovery-for-content-intelligence-enrichments)
+1. [Identify and query documents](#5-identify-and-query-documents)
 
 ### 1. Clone the repo
 
@@ -90,7 +91,7 @@ On this screen you name the collection ***example: Invoices***, the language, cr
 
 ![upload_data_into_collection](images/invoicecollection.gif)
 
-### 3. Understanding Discovery for Content Intelligence enrichments
+### 4. Understanding Discovery for Content Intelligence enrichments
 Discovery has a powerful analytics engine that provides cognitive enrichments and insights into your data. With built-in natural language processing (NLP) capabilities, it can extract enrichments from a wide range of document types, such as JSON, HTML, PDF, and Microsoft™ Word. There are several enrichments such as entity, sentiment, concept, classification, emotion and relationship that are available.
 
 Discovery for Content Intelligence provides a set of analysis models that are pre-trained for use with the following business documents:
@@ -114,7 +115,7 @@ Cloud Pak for Data only Purchase orders For more imformation, see [Understanding
 
 ![content_intelligence_enrichments](images/InvoiceEnrichments.gif)
 
-### 4. Identify and query documents
+### 5. Identify and query documents
 Content Intelligence displays the original documents in a browser, regardless of the source format. In addition, it recognizes key elements of the documents and gives you the ability to navigate to them quickly. For example, if you are searching for the payment terms clauses in a contract.Document preview with Content Intelligence detects those clauses and highlights the passages.
 
 - The Integrate and deploy page in the IBM Watson™ Discovery can be used to share and deploy your projects.
